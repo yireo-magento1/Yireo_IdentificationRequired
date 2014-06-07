@@ -1,0 +1,41 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento 
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:80%;"><h3 class="icon-head head-tag"><?php echo $this->__('Identification Rules - Overview'); ?></h3></td>
+        <td class="formbuttons">
+            <?php echo $this->getSaveButtonHtml(); ?>
+        </td>
+	</tr>
+</table>
+</div>
+
+<div class="entry-edit" id="rules-listing">
+    <?php echo $this->getGridHtml() ?>
+</div>
+
+<div style="text-align:center;">
+<div style="font-size:90%; color:#575757; padding-top:20px;">
+        IdentificationRequired v<?php echo $this->getVersion(); ?> &nbsp; - &nbsp;
+        Copyright &copy; 2012 <a href="http://www.yireo.com/" target="_new">Yireo</a>
+        <img src="<?php echo $this->getSkinUrl('images/trashcan/yireo.png'); ?>" style="display:inline;padding-left:5px" />
+</div>
+</div>
+
+<script type="text/javascript">
+var rulesForm = new varienForm('rules_edit_form');
+function doSubmit() {
+    rulesForm.submit();
+    return true;
+}
+</script>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package Yireo_IdentificationRequired
+ * @author Yireo (http://www.yireo.com/)
+ * @copyright Copyright 2014 Yireo (http://www.yireo.com/)
+ * @license Open Source License (OSL v3)
+ * @link http://www.yireo.com
+ */
+-->
+<config>
+    <menu>
+        <system>
+            <children>
+                <identificationrequired translate="title" module="identificationrequired">
+                    <title>Identification Rules</title>
+                    <action>identificationrequired/admin/index</action>
+                </identificationrequired>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <identificationrequired translate="title" module="identificationrequired">
+                                        <title>IdentificationRequired Section</title>
+                                    </identificationrequired>
+                                </children>
+                            </config>
+                            <identificationrequired translate="title" module="identificationrequired">
+                                <title>Identification Rules</title>
+                                <children>
+                                    <owner translate="title" module="identificationrequired">
+                                        <title>Handle Own Items</title>
+                                    </owner>
+                                    <all translate="title" module="identificationrequired">
+                                        <title>Handle All Items</title>
+                                    </all>
+                                </children>
+                            </identificationrequired>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (C) 2014 Yireo (http://www.yireo.com/)
+ * @license     Open Source License (OSL v3)
+ */
+-->
+<config>
+
+    <modules>
+        <Yireo_IdentificationRequired>
+            <version>0.0.6</version>
+        </Yireo_IdentificationRequired>
+    </modules>
+
+    <global>
+        <blocks>
+            <identificationrequired>
+                <class>Yireo_IdentificationRequired_Block</class>
+            </identificationrequired>
+        </blocks>
+
+        <helpers>
+            <identificationrequired>
+                <class>Yireo_IdentificationRequired_Helper</class>
+            </identificationrequired>
+        </helpers>
+
+        <models>
+            <identificationrequired>
+                <class>Yireo_IdentificationRequired_Model</class>
+                <resourceModel>identificationrequired_mysql4</resourceModel>
+            </identificationrequired>
+            <identificationrequired_mysql4>
+                <class>Yireo_IdentificationRequired_Model_Mysql4</class>
+                <entities>
+                    <rule>
+                        <table>identificationrequired_rule</table>
+                    </rule>
+                    <value>
+                        <table>identificationrequired_value</table>
+                    </value>
+                </entities>
+            </identificationrequired_mysql4>
+        </models>
+
+        <resources>
+            <identificationrequired_setup>
+                <setup>
+                    <module>Yireo_IdentificationRequired</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </identificationrequired_setup>
+            <identificationrequired_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </identificationrequired_write>
+            <identificationrequired_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </identificationrequired_read>
+        </resources>
+
+        <events>
+            <customer_load_after>
+                <observers>
+                    <identificationrequired_customer_load_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>customerLoadAfter</method>
+                    </identificationrequired_customer_load_after>
+                </observers>
+            </customer_load_after>
+            <customer_save_after>
+                <observers>
+                    <identificationrequired_customer_save_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>customerSaveAfter</method>
+                    </identificationrequired_customer_save_after>
+                </observers>
+            </customer_save_after>
+            <adminhtml_customer_save_after>
+                <observers>
+                    <identificationrequired_adminhtml_customer_save_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>adminhtmlCustomerSaveAfter</method>
+                    </identificationrequired_adminhtml_customer_save_after>
+                </observers>
+            </adminhtml_customer_save_after>
+            <controller_action_predispatch>
+                <observers>
+                    <identificationrequired_controller_action_predispatch>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </identificationrequired_controller_action_predispatch>
+                </observers>
+            </controller_action_predispatch>
+            <sales_order_save_after>
+                <observers>
+                    <identificationrequired_sales_order_save_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>salesOrderSaveAfter</method>
+                    </identificationrequired_sales_order_save_after>
+                </observers>
+            </sales_order_save_after>
+        </events>
+    </global>
+
+    <admin>
+        <routers>
+            <identificationrequired>
+                <use>admin</use>
+                <args>
+                    <module>Yireo_IdentificationRequired</module>
+                    <frontName>identificationrequired</frontName>
+                </args>
+            </identificationrequired>
+        </routers>
+    </admin>
+
+    <frontend>
+        <routers>
+            <identificationrequired>
+                <use>standard</use>
+                <args>
+                    <module>Yireo_IdentificationRequired</module>
+                    <frontName>identificationrequired</frontName>
+                </args>
+            </identificationrequired>
+        </routers>
+        <layout>
+            <updates>
+                <identificationrequired>
+                    <file>identificationrequired.xml</file>
+                </identificationrequired>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <identificationrequired>
+                    <file>identificationrequired.xml</file>
+                </identificationrequired>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Yireo_IdentificationRequired>
+                    <files>
+                        <default>Yireo_IdentificationRequired.csv</default>
+                    </files>
+                </Yireo_IdentificationRequired>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <catalog>
+            <identificationrequired>
+                <show_product_notice>1</show_product_notice>
+                <product_notice>For this product, identification is required</product_notice>
+                <show_checkout_notice>1</show_checkout_notice>
+                <checkout_notice>You have %d items in your cart that require manual identification: %s</checkout_notice>
+                <use_precheckout>1</use_precheckout>
+                <precheckout_notice>The following products require manual identification:</precheckout_notice>
+            </identificationrequired>
+        </catalog>
+    </default>
+
+</config>

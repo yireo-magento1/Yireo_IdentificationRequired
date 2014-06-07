@@ -1,0 +1,64 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+<div class="identificationrequired-precheckout-wrapper">
+
+    <div class="page-title">
+        <h1><?php echo $this->__('Identification required'); ?></h1>
+    </div>
+
+    <?php foreach($this->getApplicableRules() as $rule): ?>
+        <p><?php echo $rule->getPrecheckoutNotice(); ?></p>
+
+        <div class="identificationrequired-precheckout-products">
+            <div>
+            <ul>
+                    <?php foreach($rule->getApplicableProducts() as $product) : ?>
+                    <li>
+                        <img src="<?php echo Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(30); ?>" width="30" height="30" align="left" />
+                        <h3><?php echo $product->getName(); ?></h3>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+
+        <div class="identificationrequired-precheckout-agreement">
+            <?php echo $rule->getAgreementText(); ?>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="identificationrequired-precheckout-checkbox">
+        <form method="post" name="identificationrequired" id="identificationrequired" action="<?php echo $this->getSaveUrl(); ?>">
+            <input type="checkbox" name="check" id="identificationrequired-check" value="1" />
+            <input type="hidden" name="redirect" value="<?php echo $this->getRedirectUrl(); ?>" />
+            <label for="identificationrequired-check"><span><?php echo $this->__('I agree with these terms and conditions'); ?></span></label>
+        </form>
+    </div>
+
+    <button type="button" class="button btn-proceed-checkout btn-checkout" onClick="continueCheckout(); return false;">
+        <span>
+            <span><?php echo $this->__('Continue to checkout'); ?></span>
+        </span>
+    </button>
+</div>
+
+
+<script type="text/javascript">
+    function continueCheckout()
+    {
+        if($('identificationrequired-check').checked == false) {
+            alert('<?php echo $this->__('You need to agree with our terms and conditions'); ?>');
+            return false;
+        }
+
+        $('identificationrequired').submit();
+    }
+</script>

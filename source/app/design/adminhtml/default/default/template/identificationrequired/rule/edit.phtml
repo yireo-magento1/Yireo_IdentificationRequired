@@ -1,0 +1,31 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento 
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+<?php
+$rule = $this->getRule();
+$form = $this->getForm();
+?>
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:40%;"><h3 class="icon-head head-tag"><?php echo $this->__('Identification Rule - Edit'); ?></h3></td>
+        <td class="formbuttons" align="right">
+            <?php echo $this->getChildHtml('back_button'); ?>
+            <?php echo $this->getChildHtml('delete_button'); ?>
+            <?php echo $this->getChildHtml('save_button'); ?>
+            <?php echo $this->getChildHtml('apply_button'); ?>
+        </td>
+	</tr>
+</table>
+</div>
+
+<div id="alert_messages_block"><?php echo $this->getMessageHtml() ?></div>
+
+<?php echo Mage::helper('formapi/template')->getFormBlock($form); ?>

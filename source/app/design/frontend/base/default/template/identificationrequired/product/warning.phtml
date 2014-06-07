@@ -1,0 +1,15 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+<?php foreach($this->getRuleNotices() as $notice) : ?>
+<div class="identification-required identification-required-product">
+    <span><span><?php echo $notice; ?></span></span>
+</div>
+<?php endforeach; ?>

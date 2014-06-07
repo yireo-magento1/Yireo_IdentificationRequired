@@ -1,0 +1,55 @@
+/* Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+div.identification-required {
+    clear:both;
+    padding: 7px;
+    margin-bottom: 8px;
+    border: 1px solid #f16048;
+    background-color:#faebe7;
+    color:#df280a;
+}
+
+div.identification-required-checkout {
+    margin-bottom: 7px;
+}
+
+div.identificationrequired-precheckout-products {
+    border: 1px solid #e1e1e1;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+div.identificationrequired-precheckout-products ul li {
+    display: block;
+    padding: 10px;
+    clear:both;
+}
+
+div.identificationrequired-precheckout-products ul li img {
+    padding-right: 10px;
+}
+
+div.identificationrequired-precheckout-products:after {
+    clear:both;
+}
+
+div.identificationrequired-precheckout-agreement {
+    height:250px;
+    overflow:auto;
+    border: 1px solid #e1e1e1;
+    background-color: #fffde4;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+div.identificationrequired-precheckout-checkbox {
+    padding:10px;
+    margin-bottom: 20px;
+}

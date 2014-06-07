@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo IdentificationRequired
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2014 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+-->
+<layout>
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="identificationrequired/adminhtml_tab" name="identificationrequired_tab" />
+            <action method="addTab"><name>identificationrequired_tab</name><block>identificationrequired_tab</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+</layout>

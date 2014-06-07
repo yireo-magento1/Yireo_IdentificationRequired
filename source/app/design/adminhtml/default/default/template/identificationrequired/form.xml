@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+-->
+<form name="identificationrequired_form" url="identificationrequired/index/save">
+    <fieldset name="identification" label="Identification">
+
+        <field type="select" name="identificationrequired_status" label="Status" default="">
+            <option value="pending">Pending</option>
+            <option value="waiting">Waiting</option>
+            <option value="accepted">Accepted</option>
+        </field>
+
+        <field type="select" name="identificationrequired_type" label="ID type" default="passport">
+            <option value="passport">Passport</option>
+            <option value="drivers_license">Drivers license</option>
+            <option value="id_card">ID card</option>
+        </field>
+
+        <field type="text" name="identificationrequired_number" label="ID number" validation="" />
+
+        <field type="file" name="identificationrequired_copy" label="Scanned copy" validation="required">
+            <param name="folder" value="media/identificationrequired" />
+            <param name="extensions" value="pdf,doc,png,jpeg,jpg,tiff" />
+            <param name="size" value="2M" />
+        </field>
+
+        <field type="checkbox" name="identificationrequired_agreement" label="Agreement" default="1" description="Agree with terms &amp; conditions?" validation="" />
+
+    </fieldset>
+</form>

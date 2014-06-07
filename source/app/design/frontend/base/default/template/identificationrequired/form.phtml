@@ -1,0 +1,47 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+$customer = $this->getCustomer();
+$currentStatus = $this->getStatus();
+$form = $this->getForm();
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Identification'); ?></h1>
+</div>
+
+<div class="fieldset">
+    <h2 class="legend"><?php echo $this->__('Current status'); ?></h2>
+    <p>
+        <?php echo $this->__(ucfirst($currentStatus)); ?>
+    </p>
+</div>
+
+<?php if($currentStatus == 'accepted') : ?>
+<?php foreach($form->getFieldsets() as $fieldset) : ?>
+    <?php echo Mage::helper('formapi/template')->getFieldsetBlock($fieldset); ?>
+    <?php endforeach; ?>
+<?php else: ?>
+
+<form action="<?php echo $form->getPostUrl(); ?>" enctype="multipart/form-data" method="post" name="<?php echo $form->getFormName(); ?>" id="<?php echo $form->getFormId(); ?>">
+
+<?php foreach($form->getFieldsets() as $fieldset) : ?>
+    <?php echo Mage::helper('formapi/template')->getFieldsetBlock($fieldset); ?>
+<?php endforeach; ?>
+
+<div class="buttons-set">
+    <p class="required">* <?php echo $this->__('Required Fields'); ?></p>
+    <p class="back-link"><a href="#" onclick="history.go(-1);"><small>&laquo; </small><?php echo $this->__('Back'); ?></a></p>
+    <?php echo $form->getField('submit'); ?>
+    <?php echo $form->getField('reset'); ?>
+</div>
+
+<?php echo $this->getBlockHtml('formkey'); ?>
+</form>
+<?php endif; ?>
