@@ -50,7 +50,7 @@ class Yireo_IdentificationRequired_Model_Observer
 
             $write->query('DELETE FROM `' . $table . '` WHERE `field`="' . $fieldName . '" AND `customer_id` = ' . (int)$customer->getId());
 
-            $value = mysql_real_escape_string($customer->getData($fieldName));
+            $value = addslashes($customer->getData($fieldName));
             $query = 'INSERT INTO `' . $table . '` SET `field`="' . $fieldName . '", `customer_id` = ' . (int)$customer->getId() . ', `value`="' . $value . '"';
             $write->query($query);
         }
@@ -81,7 +81,7 @@ class Yireo_IdentificationRequired_Model_Observer
             if (isset($validatedData[$fieldName])) {
                 $write->query('DELETE FROM `' . $table . '` WHERE `field`="' . $fieldName . '" AND `customer_id` = ' . (int)$customer->getId());
 
-                $value = mysql_real_escape_string($validatedData[$fieldName]);
+                $value = addslashes($validatedData[$fieldName]);
                 $query = 'INSERT INTO `' . $table . '` SET `field`="' . $fieldName . '", `customer_id` = ' . (int)$customer->getId() . ', `value`="' . $value . '"';
                 $write->query($query);
             }
