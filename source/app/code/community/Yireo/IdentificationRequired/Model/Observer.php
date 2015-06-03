@@ -102,7 +102,6 @@ class Yireo_IdentificationRequired_Model_Observer
         // Get the variables
         $module = Mage::app()->getRequest()->getModuleName();
         $controller = Mage::app()->getRequest()->getControllerName();
-        $action = Mage::app()->getRequest()->getActionName();
         $currentUrl = Mage::helper('core/url')->getCurrentUrl();
 
         $match = false;

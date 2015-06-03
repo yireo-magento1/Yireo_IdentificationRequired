@@ -90,6 +90,8 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         $rulesCollection = Mage::helper('identificationrequired')->getRulesCollection();
+        $globalModifiers = array('*', 'all', 'ALL');
+
         if(!empty($rulesCollection)) {
             foreach($rulesCollection as $rule) {
 
@@ -98,7 +100,7 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
                 $productIds = $rule->getProductIds();
                 if(!empty($productIds)) {
                     foreach($productIds as $productId) {
-                        if($productId == $product->getId() || $productId == $product->getSku()) {
+                        if(in_array($productId, $globalModifiers) || $productId == $product->getId() || $productId == $product->getSku()) {
                             $match = true;
                             break;
                         }
@@ -108,7 +110,7 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
                 $categoryIds = $rule->getCategoryIds();
                 if(!empty($categoryIds)) {
                     foreach($categoryIds as $categoryId) {
-                        if(in_array($categoryId, $product->getCategoryIds())) {
+                        if(in_array($productId, $globalModifiers) || in_array($categoryId, $product->getCategoryIds())) {
                             $match = true;
                             break;
                         }
