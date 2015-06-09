@@ -99,9 +99,15 @@ class Yireo_IdentificationRequired_Model_Observer
             return $this;
         }
 
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            return $this;
+        }
+
+
         // Get the variables
         $module = Mage::app()->getRequest()->getModuleName();
         $controller = Mage::app()->getRequest()->getControllerName();
+        $action = Mage::app()->getRequest()->getActionName();
         $currentUrl = Mage::helper('core/url')->getCurrentUrl();
 
         $match = false;
@@ -112,6 +118,10 @@ class Yireo_IdentificationRequired_Model_Observer
         }
 
         if ($match == false) {
+            return $this;
+        }
+
+        if (in_array($action, array('progress', 'shippingMethod', 'review', 'success'))) {
             return $this;
         }
 

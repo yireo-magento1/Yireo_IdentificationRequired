@@ -48,6 +48,12 @@ class Yireo_IdentificationRequired_Block_Frontend_Precheckout extends Mage_Core_
                         if(array_key_exists($productId, $cartItems)) {
                             $matches[$productId] = $cartItems[$productId];
                         }
+
+                        if($productId == '*') {
+                            foreach($cartItems as $cartItemProductId => $cartItem) {
+                                $matches[$cartItemProductId] = $cartItem;
+                            }
+                        }
                     }
 
                     foreach($rule->getCategoryIds() as $categoryId) {
