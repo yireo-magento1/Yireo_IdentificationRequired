@@ -69,8 +69,21 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
     {
         static $rulesCollection = null;
         if($rulesCollection == null) {
-            $rulesCollection = Mage::getModel('identificationrequired/rule')->getCollection();
+            $rulesCollection = Mage::getModel('identificationrequired/rule')->getCollection()
+                ->addFieldToFilter('enabled', 1)
+            ;
+
+            $rulesMapping = Mage::getModel('identificationrequired/rule')->getMapping();
+            $currentStoreId = Mage::app()->getStore()->getStoreId();
+
             foreach($rulesCollection as $rule) {
+
+                $ruleId = $rule->getRuleId();
+                if(!empty($rulesMapping[$ruleId]) && !in_array($currentStoreId, $rulesMapping[$ruleId])) {
+                    $rulesCollection->removeItemByKey($ruleId);
+                    continue;
+                }
+
                 $rule->setProductIds(Mage::helper('identificationrequired')->implode($rule->getData('product_ids')));
                 $rule->setCategoryIds(Mage::helper('identificationrequired')->implode($rule->getData('category_ids')));
             }

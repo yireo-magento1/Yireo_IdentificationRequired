@@ -74,6 +74,13 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Rule_Overview_Grid extends Ma
             'type' => 'text',
         ));
 
+        $this->addColumn('enabled', array(
+            'header'=> Mage::helper('identificationrequired')->__('Enabled'),
+            'index' => 'enabled',
+            'type' => 'options',
+            'options' => Mage::getModel('adminhtml/system_config_source_yesno')->toArray(),
+        ));
+
         $this->addColumn('actions', array(
             'header'=> Mage::helper('identificationrequired')->__('Action'),
             'type' => 'action',
