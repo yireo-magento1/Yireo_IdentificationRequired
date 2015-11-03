@@ -23,7 +23,7 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Rule_Overview extends Mage_Ad
     protected function _prepareLayout()
     {
         $this->setChild('grid', $this->getLayout()
-            ->createBlock('identificationrequired/adminhtml_rule_overview_grid', 'rule.grid')
+            ->createBlock('adminhtml/identificationrequired_rule_overview_grid', 'rule.grid')
             ->setSaveParametersInSession(true)
         );
         return parent::_prepareLayout();
@@ -34,7 +34,7 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Rule_Overview extends Mage_Ad
         return $this->getChildHtml('grid');
     }
 
-    /*
+    /**
      * Helper to return the header of this page
      */
     public function getHeader($title = null)
@@ -45,8 +45,6 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Rule_Overview extends Mage_Ad
     /**
      * Return the version
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getVersion()

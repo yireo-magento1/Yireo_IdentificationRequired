@@ -194,12 +194,12 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         return $return;
     }
 
-    /*
+    /**
      * Helper-method to log something to the system-log
      *
      * @param string $string
      * @param mixed $mixed
-     * @return null
+     *
      */
     public function log($string, $mixed = null)
     {
@@ -209,12 +209,12 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         Mage::log('[IdentificationRequired]: '.$string);
     }
 
-    /*
+    /**
      * Helper-method to quickly log a debug-entry
      *
      * @param string $string
      * @param mixed $mixed
-     * @return null
+     *
      */
     public function debug($variable, $text = null)
     {
@@ -227,5 +227,20 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         $tmp_file = BP.DS.'var'.DS.'tmp'.DS.'identificationrequired.debug';
 
         file_put_contents($tmp_file, $log."\n", FILE_APPEND);
+    }
+
+    public function isAjax()
+    {
+        $request = Mage::app()->getRequest();
+
+        if ($request->isXmlHttpRequest()) {
+            return true;
+        }
+
+        if ($request->getParam('ajax') || $request->getParam('isAjax')) {
+            return true;
+        }
+
+        return false;
     }
 }

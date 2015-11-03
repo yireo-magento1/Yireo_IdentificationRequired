@@ -44,12 +44,28 @@ div.identificationrequired-precheckout-agreement {
     height:250px;
     overflow:auto;
     border: 1px solid #e1e1e1;
-    background-color: #fffde4;
+    background-color: white;
     padding: 10px;
     margin-bottom: 10px;
 }
 
 div.identificationrequired-precheckout-checkbox {
     padding:10px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+div.identificationrequired-precheckout-ageverifier {
+    padding: 10px;
+    padding-bottom: 100px;
+}
+
+div.identificationrequired-precheckout-ageverifier div.fieldbox {
+    float: left;
+    padding: 10px;
+}
+
+div.identificationrequired-precheckout-ageverifier div.fieldbox input {
+    font-size: 160%;
+    padding: 10px;
+    width: auto;
 }

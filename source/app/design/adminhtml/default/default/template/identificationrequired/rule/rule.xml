@@ -9,7 +9,7 @@
  * @license     Open Software License
  */
 -->
-<form name="ruleForm" url="identificationrequired/admin/save">
+<form name="ruleForm" url="adminhtml/identificationrequired/save">
     <fieldset name="basic" label="Basic settings">
         <field type="text" name="label" label="Label" validation="" />
         <field type="store" name="store_id" label="Store" multiple="multiple" validation="" />
@@ -44,13 +44,17 @@
             <option value="0">No</option>
             <option value="1">Yes</option>
         </field>
-        <field type="cms_page" name="agreement_page" label="Agreement page" validation="" description="CMS-page to display when precheckout page is displayed" />
+        <field type="cms_page" name="agreement_page" label="Show CMS page" empty="1" validation="" description="CMS-page to display when precheckout page is displayed" />
         <field type="textarea" name="precheckout_notice" label="Precheckout notice" validation="" description="Extra notice when precheckout page is displayed" />
-
+        <field type="select" name="precheckout_ageverifier" label="Show age verifier" default="all">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </field>
     </fieldset>
 
     <fieldset name="products" label="Products">
-        <field type="textarea" name="product_ids" label="Products" validation="" description="A comma-separated list of product IDs, or use * to match all products" />
+        <!--<field type="textarea" name="product_ids" label="Products" description="A comma-separated list of product IDs, or use * to match all products" />-->
+        <field type="products" name="product_ids" label="Products" description="A list of products to apply this rule to" />
     </fieldset>
 
     <fieldset name="categories" label="Categories">

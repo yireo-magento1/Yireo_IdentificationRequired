@@ -10,7 +10,11 @@
 
 class Yireo_IdentificationRequired_Block_Frontend_Precheckout extends Mage_Core_Block_Template
 {
-    /*
+    protected $showAgeVerifier = false;
+
+    protected $applicableRules = array();
+
+    /**
      * Constructor method
      */
     public function _construct()
@@ -34,7 +38,10 @@ class Yireo_IdentificationRequired_Block_Frontend_Precheckout extends Mage_Core_
 
     public function getApplicableRules()
     {
-        $return = array();
+        if (!empty($this->applicableRules)) {
+            return $this->applicableRules;
+        }
+
         $cartItems = Mage::helper('identificationrequired')->getCartItemsAsArray();
 
         $rules = Mage::helper('identificationrequired')->getRulesCollection();
@@ -67,12 +74,23 @@ class Yireo_IdentificationRequired_Block_Frontend_Precheckout extends Mage_Core_
                     if(!empty($matches)) {
                         $rule->setApplicableProducts($matches);
                         $rule->setAgreementText(Mage::helper('formapi/content')->getCmspageContents($rule->getAgreementPage()));
-                        $return[] = $rule;
+
+                        if ($rule->getPrecheckoutAgeverifier() == 1) {
+                            $this->showAgeVerifier = true;
+                        }
+
+                        $this->applicableRules[] = $rule;
                     }
                 }
             }
         }
 
-        return $return;
+        return $this->applicableRules;
+    }
+
+    public function showAgeVerifier()
+    {
+        $this->getApplicableRules();
+        return $this->showAgeVerifier;
     }
 }

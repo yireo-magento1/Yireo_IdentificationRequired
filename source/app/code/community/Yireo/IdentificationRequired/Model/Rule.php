@@ -37,10 +37,6 @@ class Yireo_IdentificationRequired_Model_Rule extends Mage_Core_Model_Abstract
             $storeIds[] = $result['store_id'];
         }
 
-        if(empty($_POST)) {
-            //print_r($storeIds);
-        }
-
         $this->setStoreId($storeIds);
 
         return $rt;

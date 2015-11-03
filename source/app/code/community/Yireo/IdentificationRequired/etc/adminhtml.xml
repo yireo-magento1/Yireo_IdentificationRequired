@@ -16,11 +16,12 @@
             <children>
                 <identificationrequired translate="title" module="identificationrequired">
                     <title>Identification Rules</title>
-                    <action>identificationrequired/admin/index</action>
+                    <action>adminhtml/identificationrequired/index</action>
                 </identificationrequired>
             </children>
         </system>
     </menu>
+
     <acl>
         <resources>
             <admin>

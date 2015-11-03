@@ -27,9 +27,11 @@
 
     <identificationrequired_index_form>
         <update handle="customer_account"/>
+
         <reference name="content">
             <block type="identificationrequired/frontend_form" name="identificationrequired_form" />
         </reference>
+
         <reference name="head">
             <action method="setTitle"><title>My Identification</title></action>
         </reference>
@@ -38,12 +40,17 @@
     <identificationrequired_precheckout_index>
         <remove name="right"/>
         <remove name="left"/>
+
         <reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
+
         <reference name="content">
-            <block type="identificationrequired/frontend_precheckout" name="identificationrequired_precheckout" />
+            <block type="identificationrequired/frontend_precheckout" name="identificationrequired_precheckout">
+                <block type="identificationrequired/frontend_precheckout_ageverifier" name="identificationrequired_precheckout_ageverifier"/>
+            </block>
         </reference>
+
         <reference name="head">
             <action method="setTitle"><title>Identification Required</title></action>
         </reference>
@@ -53,6 +60,7 @@
         <reference name="content">
             <block type="identificationrequired/frontend_product_warning" name="identificationrequired_warning" before="-" />
         </reference>
+
         <!--<reference name="product.info.extrahint">
             <block type="identificationrequired/frontend_product_warning" name="identificationrequired_warning" before="-" />
         </reference>-->

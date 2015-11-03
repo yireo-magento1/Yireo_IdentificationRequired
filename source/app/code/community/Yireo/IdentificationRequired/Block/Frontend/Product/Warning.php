@@ -10,7 +10,7 @@
 
 class Yireo_IdentificationRequired_Block_Frontend_Product_Warning extends Mage_Core_Block_Template
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

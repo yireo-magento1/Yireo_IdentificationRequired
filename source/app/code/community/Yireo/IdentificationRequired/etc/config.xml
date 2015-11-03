@@ -13,7 +13,7 @@
 
     <modules>
         <Yireo_IdentificationRequired>
-            <version>0.0.8</version>
+            <version>0.1.1</version>
         </Yireo_IdentificationRequired>
     </modules>
 
@@ -121,13 +121,13 @@
 
     <admin>
         <routers>
-            <identificationrequired>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Yireo_IdentificationRequired</module>
-                    <frontName>identificationrequired</frontName>
+                    <modules>
+                        <identificationrequired after="Mage_Adminhtml">Yireo_IdentificationRequired</identificationrequired>
+                    </modules>
                 </args>
-            </identificationrequired>
+            </adminhtml>
         </routers>
     </admin>
 

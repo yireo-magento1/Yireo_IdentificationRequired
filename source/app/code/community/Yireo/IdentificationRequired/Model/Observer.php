@@ -20,12 +20,12 @@ class Yireo_IdentificationRequired_Model_Observer
     {
         $customer = $observer->getEvent()->getDataObject();
 
-        $read = Mage::getSingleton('core/resource')->getConnection('core_read');
-        $table = Mage::getSingleton('core/resource')->getTableName('identificationrequired/value');
-        $result = $read->query('SELECT * FROM `' . $table . '` WHERE `customer_id` = ' . (int)$customer->getId());
+        $collection = Mage::getModel('identificationrequired/value')->getCollection()
+            ->addFieldToFilter('customer_id', (int)$customer->getId())
+            ;
 
-        while ($row = $result->fetch()) {
-            $customer->setData($row['field'], $row['value']);
+        foreach ($collection as $customField) {
+            $customer->setData($customField->getField(), $customField->getValue());
         }
 
         return $this;
@@ -95,14 +95,9 @@ class Yireo_IdentificationRequired_Model_Observer
      */
     public function controllerActionPredispatch($observer)
     {
-        if(Mage::getStoreConfig('catalog/identificationrequired/use_precheckout') != 1) {
+        if (Mage::helper('identificationrequired')->isAjax()) {
             return $this;
         }
-
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            return $this;
-        }
-
 
         // Get the variables
         $module = Mage::app()->getRequest()->getModuleName();
@@ -111,7 +106,7 @@ class Yireo_IdentificationRequired_Model_Observer
         $currentUrl = Mage::helper('core/url')->getCurrentUrl();
 
         $match = false;
-        if (in_array($controller, array('onepage', 'multishipping'))) {
+        if (in_array($controller, array('checkout_onepage', 'onepage', 'multishipping'))) {
             $match = true;
         } elseif ($module == 'onestep') {
             $match = true;

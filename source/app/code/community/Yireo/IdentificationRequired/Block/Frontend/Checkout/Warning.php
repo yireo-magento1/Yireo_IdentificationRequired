@@ -12,7 +12,7 @@ class Yireo_IdentificationRequired_Block_Frontend_Checkout_Warning extends Mage_
 {
     protected $productsIdentificationRequired = array();
 
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

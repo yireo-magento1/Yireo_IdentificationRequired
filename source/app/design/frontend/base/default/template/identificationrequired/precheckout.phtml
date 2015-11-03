@@ -14,6 +14,7 @@
         <h1><?php echo $this->__('Identification required'); ?></h1>
     </div>
 
+    <?php $agreementCheck = false; ?>
     <?php foreach($this->getApplicableRules() as $rule): ?>
         <p><?php echo $rule->getPrecheckoutNotice(); ?></p>
 
@@ -33,6 +34,8 @@
         <div class="identificationrequired-precheckout-agreement">
             <?php echo $rule->getAgreementText(); ?>
         </div>
+
+        <?php $agreementCheck = true; ?>
     <?php endforeach; ?>
 
     <div class="identificationrequired-precheckout-checkbox">
@@ -43,6 +46,12 @@
         </form>
     </div>
 
+    <?php $ageverifierCheck = false; ?>
+    <?php if ($this->showAgeVerifier()) : ?>
+        <?php $ageverifierCheck = true; ?>
+        <?php echo $this->getChildHtml('identificationrequired_precheckout_ageverifier'); ?>
+    <?php endif; ?>
+
     <button type="button" class="button btn-proceed-checkout btn-checkout" onClick="continueCheckout(); return false;">
         <span>
             <span><?php echo $this->__('Continue to checkout'); ?></span>
@@ -50,15 +59,29 @@
     </button>
 </div>
 
-
 <script type="text/javascript">
     function continueCheckout()
+    {
+        <?php if ($agreementCheck) : ?>
+        if (agreementCheck() == false) {
+            return false;
+        }
+        <?php endif; ?>
+
+        <?php if ($ageverifierCheck) : ?>
+        if (checkAgeVerifier() == false) {
+            return false;
+        }
+        <?php endif; ?>
+
+        $('identificationrequired').submit();
+    }
+
+    function agreementCheck()
     {
         if($('identificationrequired-check').checked == false) {
             alert('<?php echo $this->__('You need to agree with our terms and conditions'); ?>');
             return false;
         }
-
-        $('identificationrequired').submit();
     }
 </script>

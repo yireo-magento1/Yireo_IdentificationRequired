@@ -16,4 +16,11 @@
             <action method="addTab"><name>identificationrequired_tab</name><block>identificationrequired_tab</block></action>
         </reference>
     </adminhtml_customer_edit>
+
+    <identificationrequired_admin_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/formapi/generic.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/formapi/products.js</name></action>
+        </reference>
+    </identificationrequired_admin_edit>
 </layout>
