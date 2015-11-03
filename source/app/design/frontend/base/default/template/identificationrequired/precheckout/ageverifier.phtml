@@ -1,0 +1,49 @@
+<?php
+/**
+ * Yireo IdentificationRequired for Magento
+ *
+ * @package     Yireo_IdentificationRequired
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+<div class="identificationrequired-precheckout-ageverifier">
+    <h3><?= $this->__('Enter your date of birth to continue'); ?></h3>
+
+    <div class="fieldbox">
+        <input type="text" name="ageverifier[day]" id="identificationrequired-ageverifier-day" placeholder="dd" />
+    </div>
+    <div class="fieldbox">
+        <input type="text" name="ageverifier[month]" id="identificationrequired-ageverifier-month" placeholder="mm" />
+    </div>
+    <div class="fieldbox">
+        <input type="text" name="ageverifier[year]" id="identificationrequired-ageverifier-year" placeholder="yyyy"/>
+    </div>
+</div>
+<div style="clear:both;"></div>
+
+<script type="text/javascript">
+    function checkAgeVerifier()
+    {
+        var day = $('identificationrequired-ageverifier-day').value;
+        if(day < 1 || day > 31) {
+            alert('<?php echo $this->__('Please enter your day of birth'); ?>');
+            return false;
+        }
+
+        var month = $('identificationrequired-ageverifier-month').value;
+        if(month < 1 || month > 12) {
+            alert('<?php echo $this->__('Please enter your month of birth'); ?>');
+            return false;
+        }
+
+        var year = $('identificationrequired-ageverifier-year').value;
+        if(year < <?= date('Y') - 120 ?> || year > <?= date('Y') ?>) {
+            alert('<?php echo $this->__('Please enter your year of birth'); ?>');
+            return false;
+        }
+
+        return true;
+    }
+</script>
