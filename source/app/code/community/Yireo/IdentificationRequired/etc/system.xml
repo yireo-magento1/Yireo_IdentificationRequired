@@ -4,10 +4,36 @@
  * Yireo IdentificationRequired for Magento
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 -->
 <config>
+    <sections>
+        <catalog>
+            <groups>
+                <identificationrequired translate="label">
+                    <label>Identification Required</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>900</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <agreement_page translate="label">
+                            <label>Agreement Page</label>
+                            <comment><![CDATA[Agreement Page to show in customer account]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </agreement_page>
+                    </fields>
+                </identificationrequired>
+            </groups>
+        </catalog>
+    </sections>
 </config>

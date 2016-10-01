@@ -3,8 +3,8 @@
  * Yireo IdentificationRequired for Magento
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -50,6 +50,9 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         return $array;
     }
 
+    /**
+     * @return array
+     */
     public function getCartItemsAsArray()
     {
         $cartItems = Mage::getSingleton('checkout/cart')->getItems();
@@ -73,13 +76,13 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
                 ->addFieldToFilter('enabled', 1)
             ;
 
-            $rulesMapping = Mage::getModel('identificationrequired/rule')->getMapping();
+            $rulesMapping = Mage::getModel('identificationrequired/rule')->getStoreMapping();
             $currentStoreId = Mage::app()->getStore()->getStoreId();
 
             foreach($rulesCollection as $rule) {
 
                 $ruleId = $rule->getRuleId();
-                if(!empty($rulesMapping[$ruleId]) && !in_array($currentStoreId, $rulesMapping[$ruleId])) {
+                if(!empty($rulesMapping[$ruleId]) && !in_array($currentStoreId, $rulesMapping[$ruleId]) && !in_array(0, $rulesMapping[$ruleId])) {
                     $rulesCollection->removeItemByKey($ruleId);
                     continue;
                 }
@@ -107,7 +110,7 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
 
         if(!empty($rulesCollection)) {
             foreach($rulesCollection as $rule) {
-
+                /** @var Yireo_IdentificationRequired_Model_Rule $rule */
                 $match = false;
 
                 $productIds = $rule->getProductIds();
@@ -123,7 +126,7 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
                 $categoryIds = $rule->getCategoryIds();
                 if(!empty($categoryIds)) {
                     foreach($categoryIds as $categoryId) {
-                        if(in_array($productId, $globalModifiers) || in_array($categoryId, $product->getCategoryIds())) {
+                        if(in_array($categoryId, $globalModifiers) || in_array($categoryId, $product->getCategoryIds())) {
                             $match = true;
                             break;
                         }
@@ -212,9 +215,8 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Helper-method to quickly log a debug-entry
      *
-     * @param string $string
-     * @param mixed $mixed
-     *
+     * @param mixed $variable
+     * @param string $text
      */
     public function debug($variable, $text = null)
     {
@@ -229,6 +231,9 @@ class Yireo_IdentificationRequired_Helper_Data extends Mage_Core_Helper_Abstract
         file_put_contents($tmp_file, $log."\n", FILE_APPEND);
     }
 
+    /**
+     * @return bool
+     */
     public function isAjax()
     {
         $request = Mage::app()->getRequest();

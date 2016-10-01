@@ -3,8 +3,8 @@
  * Yireo IdentificationRequired for Magento
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -15,15 +15,26 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Tab extends Mage_Adminhtml_Bl
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->setTemplate('identificationrequired/tab.phtml');
 
+        parent::__construct();
     }
 
-    public function getCustomtabInfo(){
+    /**
+     * Return the tab information
+     *
+     * @return null
+     */
+    public function getCustomtabInfo()
+    {
 
         $customer = Mage::registry('current_customer');
+
         return null;
     }
 
@@ -78,41 +89,77 @@ class Yireo_IdentificationRequired_Block_Adminhtml_Tab extends Mage_Adminhtml_Bl
         return 'tags';
     }
 
+    /**
+     * Return the form
+     *
+     * @return bool|Yireo_FormApi_Model_Form
+     */
     public function getForm()
     {
         $formXml = Mage::helper('identificationrequired')->getFormXml();
         $form = Mage::getModel('formapi/form')->loadFile($formXml);
         $form->setFieldData($this->getCustomerData());
+
         return $form;
     }
 
+    /**
+     * Return a customer entity
+     *
+     * @return Mage_Customer_Model_Customer
+     */
     public function getCustomer()
     {
         $customerId = Mage::app()->getRequest()->getParam('id');
         $customer = Mage::getModel('customer/customer')->load($customerId);
+
         return $customer;
     }
 
+    /**
+     * Return an array with customer data
+     *
+     * @return mixed
+     */
     public function getCustomerData()
     {
         return $this->getCustomer()->getData();
     }
 
+    /**
+     * Return the date of birth of a customer
+     *
+     * @return mixed|string
+     */
     public function getCustomerDateOfBirth()
     {
         $customer = $this->getCustomer();
         $birth_date = $customer->getData('dob');
-        if(empty($birth_date)) return $this->__('Unknown');
+
+        if (empty($birth_date)) {
+            return $this->__('Unknown');
+        }
+
         $birth_date = strftime('%d %B %Y', strtotime($birth_date));
         return $birth_date;
     }
 
+    /**
+     * Return the customer age
+     *
+     * @return string
+     */
     public function getCustomerAge()
     {
         $customer = $this->getCustomer();
         $birth_date = strtotime($customer->getData('dob'));
-        if(!is_numeric($birth_date)) return $this->__('Unknown');
+
+        if (!is_numeric($birth_date)) {
+            return $this->__('Unknown');
+        }
+
         $age = intval(substr(date('Ymd') - date('Ymd', $birth_date), 0, -4));
-        return $age.' '.$this->__('years');
+
+        return $age . ' ' . $this->__('years');
     }
 }

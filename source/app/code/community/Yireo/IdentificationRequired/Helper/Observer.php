@@ -9,16 +9,9 @@
  */
 
 /**
- * Rule model
+ * IdentificationRequired helper
  */
-class Yireo_IdentificationRequired_Model_Value extends Mage_Core_Model_Abstract
+class Yireo_IdentificationRequired_Helper_Observer extends Mage_Core_Helper_Abstract
 {
-    /**
-     * Constructor
-     */
-    protected function _construct()
-    {
-        parent::_construct();
-        $this->_init('identificationrequired/value');
-    }
+
 }

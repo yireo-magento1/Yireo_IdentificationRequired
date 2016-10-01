@@ -3,8 +3,8 @@
  * Yireo IdentificationRequired
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -21,6 +21,11 @@ class Yireo_IdentificationRequired_Block_Frontend_Form extends Mage_Core_Block_T
         $this->setPageTitle($this->__('My Identification'));
     }
 
+    /**
+     * Return the form model
+     *
+     * @return Yireo_FormApi_Model_Form
+     */
     public function getForm()
     {
         $form = Mage::getModel('formapi/form');
@@ -37,11 +42,21 @@ class Yireo_IdentificationRequired_Block_Frontend_Form extends Mage_Core_Block_T
         return $form;
     }
 
+    /**
+     * Return the current customer
+     *
+     * @return Mage_Customer_Model_Customer
+     */
     public function getCustomer()
     {
         return Mage::getModel('customer/session')->getCustomer();
     }
 
+    /**
+     * Return the current identification status of a customer
+     *
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->getCustomer()->getData('identificationrequired_status');

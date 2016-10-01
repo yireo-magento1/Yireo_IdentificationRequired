@@ -4,8 +4,8 @@
  * Yireo_IdentificationRequired-module for Magento
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Software License
  */
 -->
@@ -14,6 +14,9 @@
         <Yireo_IdentificationRequired>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Yireo_FormApi/>
+            </depends>
         </Yireo_IdentificationRequired>
     </modules>
 </config>

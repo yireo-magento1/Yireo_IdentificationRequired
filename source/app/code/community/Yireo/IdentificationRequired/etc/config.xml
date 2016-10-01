@@ -4,8 +4,8 @@
  * Yireo IdentificationRequired for Magento
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 -->
@@ -13,7 +13,7 @@
 
     <modules>
         <Yireo_IdentificationRequired>
-            <version>0.1.1</version>
+            <version>0.1.5</version>
         </Yireo_IdentificationRequired>
     </modules>
 
@@ -98,6 +98,24 @@
                     </identificationrequired_adminhtml_customer_save_after>
                 </observers>
             </adminhtml_customer_save_after>
+            <checkout_cart_update_items_after>
+                <observers>
+                    <identificationrequired_checkout_cart_update_items_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>checkoutCartUpdateItemsAfter</method>
+                    </identificationrequired_checkout_cart_update_items_after>
+                </observers>
+            </checkout_cart_update_items_after>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <identificationrequired_checkout_cart_product_add_after>
+                        <type>singleton</type>
+                        <class>identificationrequired/observer</class>
+                        <method>checkoutCartProductAddAfter</method>
+                    </identificationrequired_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
             <controller_action_predispatch>
                 <observers>
                     <identificationrequired_controller_action_predispatch>

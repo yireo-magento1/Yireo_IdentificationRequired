@@ -3,8 +3,8 @@
  * Yireo IdentificationRequired for Magento 
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -23,8 +23,8 @@ class Yireo_IdentificationRequired_IdentificationrequiredController extends Yire
      */
     protected function _initAction()
     {
-        $this->overviewBlock = 'adminhtml/identificationrequired_rule_overview';
-        $this->editBlock = 'adminhtml/identificationrequired_rule_edit';
+        $this->overviewBlock = 'identificationrequired/adminhtml_rule_overview';
+        $this->editBlock = 'identificationrequired/adminhtml_rule_edit';
 
         $this->loadLayout()
             ->_setActiveMenu('system/identificationrequired')
@@ -39,9 +39,12 @@ class Yireo_IdentificationRequired_IdentificationrequiredController extends Yire
      */
     public function storeAction()
     {
-        // Delete the rule
         $ruleId = $this->getRequest()->getParam('rule_id', 0);
         $post = $this->getRequest()->getPost();
+
+        if (empty($post['store_id'])) {
+            $post['store_id'] = array(0);
+        }
 
         if (empty($post['product_ids']) && empty($post['category_ids'])) {
             $this->getSession()->addError($this->__('Your rule is not matched against any products or categories. Hint: Enter * to match any product or category.'));
@@ -98,7 +101,7 @@ class Yireo_IdentificationRequired_IdentificationrequiredController extends Yire
         }
 
         // Redirect
-        $this->_redirect('adminhtml/identificationrequired/index');
+        $this->_redirect('*/*/index');
     }
 
     protected function _isAllowed()

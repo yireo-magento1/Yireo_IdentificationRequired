@@ -3,8 +3,8 @@
  * Yireo IdentificationRequired
  *
  * @package     Yireo_IdentificationRequired
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -13,11 +13,9 @@
  */
 class Yireo_IdentificationRequired_IndexController extends Yireo_FormApi_Controller_Frontend_Form
 {
-    public function getFormXml()
-    {
-        return Mage::helper('identificationrequired')->getFormXml();
-    }
-
+    /**
+     * Controller action - Save customer data
+     */
     public function saveAction()
     {
         if($this->validate() == true) {
@@ -49,8 +47,7 @@ class Yireo_IdentificationRequired_IndexController extends Yireo_FormApi_Control
     }
 
     /**
-     * Display fields of this customer
-     *
+     * Controller action - Display fields of this customer
      */
     public function formAction()
     {
@@ -60,10 +57,19 @@ class Yireo_IdentificationRequired_IndexController extends Yireo_FormApi_Control
 
     /**
      * Display fields of this customer
-     *
      */
     public function indexAction()
     {
         $this->_redirect('identificationrequired/index/form');
+    }
+
+    /**
+     * Return the form XML file, used by Form API parent controller
+     *
+     * @return string
+     */
+    public function getFormXml()
+    {
+        return Mage::helper('identificationrequired')->getFormXml();
     }
 }
